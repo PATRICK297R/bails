@@ -18,7 +18,10 @@ export declare const extractImageThumb: (bufferOrFilePath: Readable | Buffer | s
     };
 }>;
 export declare const encodeBase64EncodedStringForUpload: (b64: string) => string;
-export declare const generateProfilePicture: (mediaUpload: WAMediaUpload) => Promise<{
+export declare const generateProfilePicture: (mediaUpload: WAMediaUpload, dimensions?: {
+    width: number;
+    height: number;
+}) => Promise<{
     img: Buffer<ArrayBufferLike>;
 }>;
 /** gets the SHA256 of the given media message */

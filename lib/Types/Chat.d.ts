@@ -68,6 +68,7 @@ export type ChatModification = {
     mute: number | null;
 } | {
     clear: boolean;
+    lastMessages: LastMessageList;
 } | {
     deleteForMe: {
         deleteMedia: boolean;
