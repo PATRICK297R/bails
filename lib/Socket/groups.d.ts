@@ -34,7 +34,7 @@ export declare const makeGroupsSocket: (config: SocketConfig) => {
      * @param key the key of the invite message, or optionally only provide the jid of the person who sent the invite
      * @param inviteMessage the message to accept
      */
-    groupAcceptInviteV4: (key: string | WAMessageKey, inviteMessage: proto.Message.IGroupInviteMessage) => Promise<any>;
+    groupAcceptInviteV4: (key: string | WAMessageKey, inviteMessage: proto.Message.IGroupInviteMessage) => Promise<string>;
     groupGetInviteInfo: (code: string) => Promise<GroupMetadata>;
     groupToggleEphemeral: (jid: string, ephemeralExpiration: number) => Promise<void>;
     groupSettingUpdate: (jid: string, setting: "announcement" | "not_announcement" | "locked" | "unlocked") => Promise<void>;
@@ -110,7 +110,7 @@ export declare const makeGroupsSocket: (config: SocketConfig) => {
     signalRepository: import("../Types").SignalRepository;
     user: import("../Types").Contact | undefined;
     generateMessageTag: () => string;
-    query: (node: BinaryNode, timeoutMs?: number) => Promise<any>;
+    query: (node: BinaryNode, timeoutMs?: number) => Promise<BinaryNode>;
     waitForMessage: <T>(msgId: string, timeoutMs?: number | undefined) => Promise<any>;
     waitForSocketOpen: () => Promise<void>;
     sendRawMessage: (data: Uint8Array | Buffer) => Promise<void>;
@@ -122,6 +122,6 @@ export declare const makeGroupsSocket: (config: SocketConfig) => {
     uploadPreKeysToServerIfRequired: () => Promise<void>;
     requestPairingCode: (phoneNumber: string, customPairingCode?: string) => Promise<string>;
     waitForConnectionUpdate: (check: (u: Partial<import("../Types").ConnectionState>) => Promise<boolean | undefined>, timeoutMs?: number) => Promise<void>;
-    sendWAMBuffer: (wamBuffer: Buffer) => Promise<any>;
+    sendWAMBuffer: (wamBuffer: Buffer) => Promise<BinaryNode>;
 };
 export declare const extractGroupMetadata: (result: BinaryNode) => GroupMetadata;

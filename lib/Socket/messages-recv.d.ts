@@ -9,7 +9,7 @@ export declare const makeMessagesRecvSocket: (config: SocketConfig) => {
     rejectCall: (callId: string, callFrom: string) => Promise<void>;
     fetchMessageHistory: (count: number, oldestMsgKey: WAMessageKey, oldestMsgTimestamp: number | Long) => Promise<string>;
     requestPlaceholderResend: (messageKey: WAMessageKey) => Promise<string | undefined>;
-    getPrivacyTokens: (jids: string[]) => Promise<any>;
+    getPrivacyTokens: (jids: string[]) => Promise<BinaryNode>;
     assertSessions: (jids: string[], force: boolean) => Promise<boolean>;
     relayMessage: (jid: string, message: proto.IMessage, { messageId: msgId, participant, additionalAttributes, additionalNodes, useUserDevicesCache, useCachedGroupMetadata, statusJidList }: MessageRelayOptions) => Promise<string>;
     sendReceipt: (jid: string, participant: string | undefined, messageIds: string[], type: MessageReceiptType) => Promise<void>;
@@ -72,7 +72,7 @@ export declare const makeMessagesRecvSocket: (config: SocketConfig) => {
     groupRevokeInvite: (jid: string) => Promise<string | undefined>;
     groupAcceptInvite: (code: string) => Promise<string | undefined>;
     groupRevokeInviteV4: (groupJid: string, invitedJid: string) => Promise<boolean>;
-    groupAcceptInviteV4: (key: string | WAMessageKey, inviteMessage: proto.Message.IGroupInviteMessage) => Promise<any>;
+    groupAcceptInviteV4: (key: string | WAMessageKey, inviteMessage: proto.Message.IGroupInviteMessage) => Promise<string>;
     groupGetInviteInfo: (code: string) => Promise<import("../Types").GroupMetadata>;
     groupToggleEphemeral: (jid: string, ephemeralExpiration: number) => Promise<void>;
     groupSettingUpdate: (jid: string, setting: "announcement" | "not_announcement" | "locked" | "unlocked") => Promise<void>;
@@ -145,7 +145,7 @@ export declare const makeMessagesRecvSocket: (config: SocketConfig) => {
     signalRepository: import("../Types").SignalRepository;
     user: import("../Types").Contact | undefined;
     generateMessageTag: () => string;
-    query: (node: BinaryNode, timeoutMs?: number) => Promise<any>;
+    query: (node: BinaryNode, timeoutMs?: number) => Promise<BinaryNode>;
     waitForMessage: <T>(msgId: string, timeoutMs?: number | undefined) => Promise<any>;
     waitForSocketOpen: () => Promise<void>;
     sendRawMessage: (data: Uint8Array | Buffer) => Promise<void>;
@@ -157,5 +157,5 @@ export declare const makeMessagesRecvSocket: (config: SocketConfig) => {
     uploadPreKeysToServerIfRequired: () => Promise<void>;
     requestPairingCode: (phoneNumber: string, customPairingCode?: string) => Promise<string>;
     waitForConnectionUpdate: (check: (u: Partial<import("../Types").ConnectionState>) => Promise<boolean | undefined>, timeoutMs?: number) => Promise<void>;
-    sendWAMBuffer: (wamBuffer: Buffer) => Promise<any>;
+    sendWAMBuffer: (wamBuffer: Buffer) => Promise<BinaryNode>;
 };

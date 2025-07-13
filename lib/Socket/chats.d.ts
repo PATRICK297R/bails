@@ -71,7 +71,7 @@ export declare const makeChatsSocket: (config: SocketConfig) => {
     signalRepository: import("../Types").SignalRepository;
     user: import("../Types").Contact | undefined;
     generateMessageTag: () => string;
-    query: (node: BinaryNode, timeoutMs?: number) => Promise<any>;
+    query: (node: BinaryNode, timeoutMs?: number) => Promise<BinaryNode>;
     waitForMessage: <T>(msgId: string, timeoutMs?: number | undefined) => Promise<any>;
     waitForSocketOpen: () => Promise<void>;
     sendRawMessage: (data: Uint8Array | Buffer) => Promise<void>;
@@ -83,5 +83,5 @@ export declare const makeChatsSocket: (config: SocketConfig) => {
     uploadPreKeysToServerIfRequired: () => Promise<void>;
     requestPairingCode: (phoneNumber: string, customPairingCode?: string) => Promise<string>;
     waitForConnectionUpdate: (check: (u: Partial<import("../Types").ConnectionState>) => Promise<boolean | undefined>, timeoutMs?: number) => Promise<void>;
-    sendWAMBuffer: (wamBuffer: Buffer) => Promise<any>;
+    sendWAMBuffer: (wamBuffer: Buffer) => Promise<BinaryNode>;
 };
