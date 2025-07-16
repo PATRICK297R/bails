@@ -92,6 +92,8 @@ export type ChatModification = {
 } | {
     addLabel: LabelActionBody;
 } | {
+    contact: proto.SyncActionValue.IContactAction | null;
+} | {
     addChatLabel: ChatLabelAssociationActionBody;
 } | {
     removeChatLabel: ChatLabelAssociationActionBody;

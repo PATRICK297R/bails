@@ -67,6 +67,7 @@ export declare const prepareStream: (media: WAMediaUpload, mediaType: MediaType,
     fileEncSha256: undefined;
     bodyPath: string | undefined;
     didSaveToTmpPath: boolean;
+    streamingSidecar: undefined;
 }>;
 type EncryptedStreamOptions = {
     saveOriginalFileIfRequired?: boolean;
@@ -82,6 +83,7 @@ export declare const encryptedStream: (media: WAMediaUpload, mediaType: MediaTyp
     fileSha256: Buffer<ArrayBufferLike>;
     fileLength: number;
     didSaveToTmpPath: boolean;
+    streamingSidecar: Buffer<ArrayBuffer>;
 }>;
 export type MediaDownloadOptions = {
     startByte?: number;
