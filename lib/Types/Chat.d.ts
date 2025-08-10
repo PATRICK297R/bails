@@ -90,6 +90,10 @@ export type ChatModification = {
     delete: true;
     lastMessages: LastMessageList;
 } | {
+    contact: proto.SyncActionValue.IContactAction | null;
+} | {
+    disableLinkPreviews: proto.SyncActionValue.IPrivacySettingDisableLinkPreviewsAction;
+} | {
     addLabel: LabelActionBody;
 } | {
     addChatLabel: ChatLabelAssociationActionBody;

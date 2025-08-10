@@ -15,7 +15,7 @@ export declare const makeSocket: (config: SocketConfig) => {
         process(handler: (events: Partial<import("../Types").BaileysEventMap>) => void | Promise<void>): (() => void);
         buffer(): void;
         createBufferedFunction<A extends any[], T>(work: (...args: A) => Promise<T>): ((...args: A) => Promise<T>);
-        flush(force?: boolean): boolean;
+        flush(): boolean;
         isBuffering(): boolean;
     };
     authState: {

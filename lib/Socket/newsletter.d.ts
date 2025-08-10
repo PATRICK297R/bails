@@ -84,6 +84,7 @@ export declare const makeNewsletterSocket: (config: SocketConfig) => {
     updateProfileStatus: (status: string) => Promise<void>;
     updateProfileName: (name: string) => Promise<void>;
     updateBlockStatus: (jid: string, action: "block" | "unblock") => Promise<void>;
+    updateDisableLinkPreviewsPrivacy: (isPreviewsDisabled: boolean) => Promise<void>;
     updateCallPrivacy: (value: import("../Types").WAPrivacyCallValue) => Promise<void>;
     updateMessagesPrivacy: (value: import("../Types").WAPrivacyMessagesValue) => Promise<void>;
     updateLastSeenPrivacy: (value: import("../Types").WAPrivacyValue) => Promise<void>;
@@ -97,6 +98,8 @@ export declare const makeNewsletterSocket: (config: SocketConfig) => {
     resyncAppState: (collections: readonly ("critical_block" | "critical_unblock_low" | "regular_high" | "regular_low" | "regular")[], isInitialSync: boolean) => Promise<void>;
     chatModify: (mod: import("../Types").ChatModification, jid: string) => Promise<void>;
     cleanDirtyBits: (type: "account_sync" | "groups", fromTimestamp?: number | string) => Promise<void>;
+    addOrEditContact: (jid: string, contact: import("../Types").WAProto.SyncActionValue.IContactAction) => Promise<void>;
+    removeContact: (jid: string) => Promise<void>;
     addLabel: (jid: string, labels: import("../Types/Label").LabelActionBody) => Promise<void>;
     addChatLabel: (jid: string, labelId: string) => Promise<void>;
     removeChatLabel: (jid: string, labelId: string) => Promise<void>;
@@ -113,7 +116,7 @@ export declare const makeNewsletterSocket: (config: SocketConfig) => {
         process(handler: (events: Partial<import("../Types").BaileysEventMap>) => void | Promise<void>): (() => void);
         buffer(): void;
         createBufferedFunction<A extends any[], T>(work: (...args: A) => Promise<T>): ((...args: A) => Promise<T>);
-        flush(force?: boolean): boolean;
+        flush(): boolean;
         isBuffering(): boolean;
     };
     authState: {

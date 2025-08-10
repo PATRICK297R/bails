@@ -22,7 +22,7 @@ type BaileysBufferableEventEmitter = BaileysEventEmitter & {
      * @param force if true, will flush all data regardless of any pending buffers
      * @returns returns true if the flush actually happened, otherwise false
      */
-    flush(force?: boolean): boolean;
+    flush(): boolean;
     /** is there an ongoing buffer */
     isBuffering(): boolean;
 };

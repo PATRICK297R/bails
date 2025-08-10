@@ -1,7 +1,8 @@
 import { Boom } from '@hapi/boom';
-import { BotListInfo, ChatModification, MessageUpsertType, SocketConfig, WABusinessProfile, WAMediaUpload, WAMessage, WAPatchCreate, WAPresence, WAPrivacyCallValue, WAPrivacyGroupAddValue, WAPrivacyMessagesValue, WAPrivacyOnlineValue, WAPrivacyValue, WAReadReceiptsValue } from '../Types';
-import { LabelActionBody } from '../Types/Label';
-import { BinaryNode } from '../WABinary';
+import { proto } from '../../WAProto';
+import type { BotListInfo, ChatModification, MessageUpsertType, SocketConfig, WABusinessProfile, WAMediaUpload, WAMessage, WAPatchCreate, WAPresence, WAPrivacyCallValue, WAPrivacyGroupAddValue, WAPrivacyMessagesValue, WAPrivacyOnlineValue, WAPrivacyValue, WAReadReceiptsValue } from '../Types';
+import type { LabelActionBody } from '../Types/Label';
+import { type BinaryNode } from '../WABinary';
 import { USyncQuery } from '../WAUSync';
 export declare const makeChatsSocket: (config: SocketConfig) => {
     getBotListV2: () => Promise<BotListInfo[]>;
@@ -32,6 +33,7 @@ export declare const makeChatsSocket: (config: SocketConfig) => {
     updateProfileStatus: (status: string) => Promise<void>;
     updateProfileName: (name: string) => Promise<void>;
     updateBlockStatus: (jid: string, action: "block" | "unblock") => Promise<void>;
+    updateDisableLinkPreviewsPrivacy: (isPreviewsDisabled: boolean) => Promise<void>;
     updateCallPrivacy: (value: WAPrivacyCallValue) => Promise<void>;
     updateMessagesPrivacy: (value: WAPrivacyMessagesValue) => Promise<void>;
     updateLastSeenPrivacy: (value: WAPrivacyValue) => Promise<void>;
@@ -45,6 +47,8 @@ export declare const makeChatsSocket: (config: SocketConfig) => {
     resyncAppState: (collections: readonly ("critical_block" | "critical_unblock_low" | "regular_high" | "regular_low" | "regular")[], isInitialSync: boolean) => Promise<void>;
     chatModify: (mod: ChatModification, jid: string) => Promise<void>;
     cleanDirtyBits: (type: "account_sync" | "groups", fromTimestamp?: number | string) => Promise<void>;
+    addOrEditContact: (jid: string, contact: proto.SyncActionValue.IContactAction) => Promise<void>;
+    removeContact: (jid: string) => Promise<void>;
     addLabel: (jid: string, labels: LabelActionBody) => Promise<void>;
     addChatLabel: (jid: string, labelId: string) => Promise<void>;
     removeChatLabel: (jid: string, labelId: string) => Promise<void>;
@@ -61,7 +65,7 @@ export declare const makeChatsSocket: (config: SocketConfig) => {
         process(handler: (events: Partial<import("../Types").BaileysEventMap>) => void | Promise<void>): (() => void);
         buffer(): void;
         createBufferedFunction<A extends any[], T>(work: (...args: A) => Promise<T>): ((...args: A) => Promise<T>);
-        flush(force?: boolean): boolean;
+        flush(): boolean;
         isBuffering(): boolean;
     };
     authState: {
